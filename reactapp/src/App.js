@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import styles from '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
+import { MainContainer, ChatContainer, MessageList, Message, MessageInput } from '@chatscope/chat-ui-kit-react';
 
 export default class App extends Component {
     static displayName = App.name;
 
     constructor(props) {
         super(props);
-        this.state = { forecasts: [], loading: true };
+        this.state = { forecasts: [], loading: false };
     }
 
     componentDidMount() {
@@ -13,28 +15,45 @@ export default class App extends Component {
     }
 
     static renderForecastsTable(forecasts) {
-        return (
-            <table className='table table-striped' aria-labelledby="tabelLabel">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Temp. (C)</th>
-                        <th>Temp. (F)</th>
-                        <th>Summary</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {forecasts.map(forecast =>
-                        <tr key={forecast.date}>
-                            <td>{forecast.date}</td>
-                            <td>{forecast.temperatureC}</td>
-                            <td>{forecast.temperatureF}</td>
-                            <td>{forecast.summary}</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
-        );
+        // return (
+        //     <table className='table table-striped' aria-labelledby="tabelLabel">
+        //         <thead>
+        //             <tr>
+        //                 <th>Date</th>
+        //                 <th>Temp. (C)</th>
+        //                 <th>Temp. (F)</th>
+        //                 <th>Summary</th>
+        //             </tr>
+        //         </thead>
+        //         <tbody>
+        //             {forecasts.map(forecast =>
+        //                 <tr key={forecast.date}>
+        //                     <td>{forecast.date}</td>
+        //                     <td>{forecast.temperatureC}</td>
+        //                     <td>{forecast.temperatureF}</td>
+        //                     <td>{forecast.summary}</td>
+        //                 </tr>
+        //             )}
+        //         </tbody>
+        //     </table>
+        // );
+
+        return(
+            <div style={{ position:"relative", height: "500px" }}>
+  <MainContainer>
+    <ChatContainer>       
+      <MessageList>
+        <Message model={{
+                 message: "Hello my friend",
+                 sentTime: "just now",
+                 sender: "Joe"
+                 }} />
+        </MessageList>
+      <MessageInput placeholder="Type message here" />        
+    </ChatContainer>
+  </MainContainer>
+</div>
+        )
     }
 
     render() {
